@@ -17,9 +17,10 @@ namespace SpikeHelper
 
         int currDeckCount = 0;
         int currUsedDeckCount = 0;
-        ArrayList Deck = new ArrayList();
-        ArrayList usedDeck = new ArrayList();
-        Dictionary<string, double> statsDictionary = new Dictionary<string, double>();
+        string file;
+        ArrayList Deck ;
+        ArrayList usedDeck ;
+        Dictionary<string, double> statsDictionary;
 
         public Form5(string theFileName)
         {
@@ -30,14 +31,21 @@ namespace SpikeHelper
             {
                 fillup(theFileName);
             }
+
+            lstDeck.BackColor = Color.LightBlue;
+            lstUsed.BackColor = Color.LightGray;
         }
 
 
 
         private void fillup(string input)
         {
+            Deck = new ArrayList();
+            usedDeck = new ArrayList();
+            statsDictionary = new Dictionary<string, double>();
             try
             {
+                file = input;
                 string[] lines = System.IO.File.ReadAllLines(input);
 
                 foreach (string line in lines)
@@ -49,6 +57,7 @@ namespace SpikeHelper
 
                 }
 
+                
                 populateDeck();
                 populateUsed();
                 middleStats();
@@ -73,8 +82,8 @@ namespace SpikeHelper
              if (entry.Value > high)
              {
                  high = entry.Value;
+                 hotHigh.Clear();
                  hotHigh.Add(entry.Key);
-                 hotHigh.Remove(hotHigh[0]);
              }
              else if (entry.Value == high)
              {
@@ -84,8 +93,8 @@ namespace SpikeHelper
              if (entry.Value < low)
              {
                  low = entry.Value;
+                 hotLow.Clear();
                  hotLow.Add(entry.Key);
-                 hotLow.Remove(hotLow[0]);
              }
              else if(entry.Value == low)
              {
@@ -96,36 +105,11 @@ namespace SpikeHelper
          lblNext.Text ="Probable Next Card: "+ high + "%";
          lblLeast.Text ="Least Probable: " + low + "%";
 
-         string line ="";
-         for (int i = 0; i < 3;i++)
-         {
+         cmbNext.DataSource = hotHigh;
 
-             if (line != "")
-             {
-                 line += ",";
-             }
+         cmbLeast.DataSource = hotLow;
 
-             line += hotHigh[i];
-         }
          
-         lbloutMostProbs.Text = line;
-
-         line = "";
-         for (int i = 0; i < 3; i++)
-         {
-
-             if (line != "")
-             {
-                 line += ",";
-             }
-
-             line += hotLow[i];
-         }
-
-         lbloutLeastProbs.Text = line;
-
-
-
         }
 
         private void populateDeck()
@@ -155,6 +139,8 @@ namespace SpikeHelper
 
             lblDeckCount.Text = "Cards Left in Deck: " + currDeckCount;
             lstDeck.DataSource = lines;
+            
+          
         }
 
         private void populateUsed()
@@ -184,6 +170,8 @@ namespace SpikeHelper
 
             lblUsedCount.Text = "Cards Used: " + currUsedDeckCount;
             lstUsed.DataSource = lines;
+
+         
         }
 
         private void lstDeck_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -220,6 +208,7 @@ namespace SpikeHelper
 
         private void useCard(string itCard)
         {
+           
 
             foreach (Card x in Deck)
             {
@@ -324,7 +313,108 @@ namespace SpikeHelper
 
         }
 
+        private void tsbtnRestart_Click(object sender, EventArgs e)
+        {
+            restart();
+           
+        }
+
+        private void restart()
+        {
+            statsDictionary.Clear();
+            fillup(file);
+            tsbar.Minimum = 0;
+            tsbar.Maximum = 200;
+
+            for (int i = 0; i <= 200; i++)
+            {
+                tsbar.Value = i;
+            }
+
+            for (int i = 200; i >= 0; i--)
+            {
+                tsbar.Value = i;
+            }
+
+        }
+
+        private void tsbtnSample_Click(object sender, EventArgs e)
+        {
+            restart();
+
+            ArrayList allCards = new ArrayList();
+
+            foreach (Card x in Deck)
+            {
+                for (int i = 0; i < x.getTheCardCount(); i++) 
+                { 
+                allCards.Add(x.getTheCardName());
+                }
+
+            }
+
+            
+
+
+            draw(allCards,7);
+
+            lblOutLasttAction.Text = "Drew a Hand of 7";
+
+            statsDictionary.Clear();
+            populateDeck();
+            populateUsed();
+            middleStats();
+           }
+
+
+        private void draw(ArrayList singles, int handSize){
+            Random rnd = new Random();
+            ArrayList pastNums = new ArrayList();
+            int randNum;
+
+            for(int i=0; i <handSize; i ++){
+
+                //makes sure the same card is drawn and error is created. 
+                do
+                {
+                    //random number must be smaller according to the previous cardss drawn becasue cards are removed
+                    randNum = rnd.Next(0, singles.Count - 1 - i);
+                } while (pastNums.Contains(randNum));
+
+                pastNums.Add(randNum);
+                
+                useCard(singles[randNum].ToString());
+            }
+
+        }
+
+        private void tsbDraw1_Click(object sender, EventArgs e)
+        {
+            Random rnd = new Random();
+
+            ArrayList allCards = new ArrayList();
+
+            foreach (Card x in Deck)
+            {
+                for (int i = 0; i < x.getTheCardCount(); i++)
+                {
+                    allCards.Add(x.getTheCardName());
+                }
+
+            }
+
+            useCard(allCards[rnd.Next(0, currDeckCount-1)].ToString());
+
+            statsDictionary.Clear();
+            populateDeck();
+            populateUsed();
+            middleStats();
+        }
+       
+
+    }
+
+    
     }
 
    
-}

@@ -155,19 +155,46 @@ namespace SpikeHelper
                 }
             }
 
-            Console.WriteLine(count);
+           
            int other = fullDeckCount - count;
+
+
+            //reset the text
+           lbl5.Text = "Five: ";
+           lbl6.Text = "Six: ";
+           lbl7.Text = "Seven: ";
+
 
                         lbl5.Text += Math.Round(calculate(other, 5,int.Parse(txtnum.Text)), 4) * 100 + "%";
                         lbl6.Text += Math.Round(calculate(other, 6, int.Parse(txtnum.Text)), 4) * 100 + "%";
                         lbl7.Text += Math.Round(calculate(other, 7, int.Parse(txtnum.Text)), 4) * 100 + "%";
 
-                        lstStats.Enabled = false;
-                        btnCalc.Enabled = false;
-                        MessageBox.Show("Please Reopen to do more stats!");
+                        //lstStats.Enabled = false;
+                        //btnCalc.Enabled = false;
+                        //MessageBox.Show("Please Reopen to do more stats!");
                         
                         
                
+        }
+
+        private void lstCustom_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                int index = this.lstCustom.IndexFromPoint(e.Location);
+                if (index != System.Windows.Forms.ListBox.NoMatches)
+                {
+                    
+                    string actualCard = lstCustom.Text;
+
+                    lstCustom.Items.Remove(actualCard);
+                }
+
+            }
+            catch (IndexOutOfRangeException)
+            {
+
+            }
         }
     }
 }

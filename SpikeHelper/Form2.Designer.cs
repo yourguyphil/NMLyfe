@@ -41,6 +41,7 @@
             // 
             // lstMyDeck
             // 
+            this.lstMyDeck.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.lstMyDeck.FormattingEnabled = true;
             this.lstMyDeck.Location = new System.Drawing.Point(278, 49);
             this.lstMyDeck.Name = "lstMyDeck";
@@ -62,6 +63,7 @@
             // 
             // txtCardName
             // 
+            this.txtCardName.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.txtCardName.Location = new System.Drawing.Point(98, 227);
             this.txtCardName.Name = "txtCardName";
             this.txtCardName.Size = new System.Drawing.Size(100, 20);

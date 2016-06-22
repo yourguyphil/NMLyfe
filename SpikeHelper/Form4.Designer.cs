@@ -45,6 +45,7 @@
             // 
             // lstStats
             // 
+            this.lstStats.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.lstStats.FormattingEnabled = true;
             this.lstStats.Location = new System.Drawing.Point(291, 16);
             this.lstStats.Name = "lstStats";
@@ -67,7 +68,7 @@
             // 
             this.lblCardName.AutoSize = true;
             this.lblCardName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCardName.Location = new System.Drawing.Point(119, 38);
+            this.lblCardName.Location = new System.Drawing.Point(121, 38);
             this.lblCardName.Name = "lblCardName";
             this.lblCardName.Size = new System.Drawing.Size(72, 20);
             this.lblCardName.TabIndex = 2;
@@ -115,11 +116,13 @@
             // 
             // lstCustom
             // 
+            this.lstCustom.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.lstCustom.FormattingEnabled = true;
             this.lstCustom.Location = new System.Drawing.Point(20, 262);
             this.lstCustom.Name = "lstCustom";
             this.lstCustom.Size = new System.Drawing.Size(211, 121);
             this.lstCustom.TabIndex = 7;
+            this.lstCustom.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lstCustom_MouseDoubleClick);
             // 
             // lblInfo
             // 
@@ -152,6 +155,7 @@
             // 
             // txtnum
             // 
+            this.txtnum.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.txtnum.Location = new System.Drawing.Point(74, 392);
             this.txtnum.Name = "txtnum";
             this.txtnum.Size = new System.Drawing.Size(76, 20);

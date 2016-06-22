@@ -27,8 +27,15 @@ namespace SpikeHelper
                 fillup(fileName);
 
                 //get only the DeckName part
-                lblDeckName.Text = "Deck: \n\n         " + fileName.Substring(fileName.LastIndexOf("\\") + 1).Remove(fileName.Substring(fileName.LastIndexOf("\\")).Length - 5);
-            }
+                try
+                {
+                    lblDeckName.Text = "Deck: \n\n         " + fileName.Substring(fileName.LastIndexOf("\\") + 1).Remove(fileName.Substring(fileName.LastIndexOf("\\")).Length - 5);
+                }
+                catch(ArgumentOutOfRangeException){
+
+                }
+                
+                }
 
             
             
