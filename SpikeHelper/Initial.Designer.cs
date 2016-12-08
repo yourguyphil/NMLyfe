@@ -1,6 +1,6 @@
 ﻿namespace SpikeHelper
 {
-    partial class Form1
+    partial class Initial
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Initial));
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnLetsPlay = new System.Windows.Forms.Button();
             this.btnBuild = new System.Windows.Forms.Button();
@@ -46,7 +46,7 @@
             this.lblTitle.Font = new System.Drawing.Font("Microsoft YaHei UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.Location = new System.Drawing.Point(13, 13);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(175, 26);
+            this.lblTitle.Size = new System.Drawing.Size(175, 28);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Welcome Spike";
             // 
@@ -72,19 +72,17 @@
             // 
             // picbox
             // 
+            this.picbox.ErrorImage = ((System.Drawing.Image)(resources.GetObject("picbox.ErrorImage")));
+            this.picbox.Image = ((System.Drawing.Image)(resources.GetObject("picbox.Image")));
             this.picbox.ImageLocation = "C:\\Users\\NGU0313\\Documents\\Visual Studio 2013\\Projects\\SpikeHelper\\SpikeHelper\\th" +
     "eSpike.png";
             this.picbox.InitialImage = ((System.Drawing.Image)(resources.GetObject("picbox.InitialImage")));
             this.picbox.Location = new System.Drawing.Point(215, 13);
             this.picbox.Name = "picbox";
             this.picbox.Size = new System.Drawing.Size(250, 152);
-            this.picbox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picbox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picbox.TabIndex = 3;
             this.picbox.TabStop = false;
-            // 
-            // ofdLetsPlay
-            // 
-            this.ofdLetsPlay.FileOk += new System.ComponentModel.CancelEventHandler(this.ofdLetsPlay_FileOk);
             // 
             // btnAbout
             // 
@@ -116,7 +114,7 @@
             this.linkLabel1.Text = "To Github!";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
-            // Form1
+            // Initial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -130,7 +128,7 @@
             this.Controls.Add(this.btnLetsPlay);
             this.Controls.Add(this.lblTitle);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Form1";
+            this.Name = "Initial";
             this.Text = "Spike Helper vC#";
             ((System.ComponentModel.ISupportInitialize)(this.picbox)).EndInit();
             this.ResumeLayout(false);

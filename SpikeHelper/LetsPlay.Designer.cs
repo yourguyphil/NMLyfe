@@ -1,6 +1,6 @@
 ﻿namespace SpikeHelper
 {
-    partial class Form5
+    partial class LetsPlay
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form5));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LetsPlay));
             this.lstDeck = new System.Windows.Forms.ListBox();
             this.lstUsed = new System.Windows.Forms.ListBox();
             this.picSpike = new System.Windows.Forms.PictureBox();
@@ -45,8 +45,11 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsbtnRestart = new System.Windows.Forms.ToolStripButton();
             this.tsbtnSample = new System.Windows.Forms.ToolStripButton();
-            this.tsbar = new System.Windows.Forms.ToolStripProgressBar();
             this.tsbDraw1 = new System.Windows.Forms.ToolStripButton();
+            this.tsbSideBoard = new System.Windows.Forms.ToolStripButton();
+            this.tsbar = new System.Windows.Forms.ToolStripProgressBar();
+            this.lblprompt = new System.Windows.Forms.Label();
+            this.lbldeckName = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picSpike)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -56,7 +59,7 @@
             this.lstDeck.FormattingEnabled = true;
             this.lstDeck.Location = new System.Drawing.Point(27, 81);
             this.lstDeck.Name = "lstDeck";
-            this.lstDeck.Size = new System.Drawing.Size(255, 329);
+            this.lstDeck.Size = new System.Drawing.Size(255, 381);
             this.lstDeck.TabIndex = 0;
             this.lstDeck.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lstDeck_MouseDoubleClick);
             // 
@@ -65,7 +68,7 @@
             this.lstUsed.FormattingEnabled = true;
             this.lstUsed.Location = new System.Drawing.Point(570, 81);
             this.lstUsed.Name = "lstUsed";
-            this.lstUsed.Size = new System.Drawing.Size(255, 329);
+            this.lstUsed.Size = new System.Drawing.Size(255, 381);
             this.lstUsed.TabIndex = 1;
             this.lstUsed.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lstUsed_MouseDoubleClick);
             // 
@@ -103,7 +106,7 @@
             // 
             this.lblDeckCount.AutoSize = true;
             this.lblDeckCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDeckCount.Location = new System.Drawing.Point(65, 413);
+            this.lblDeckCount.Location = new System.Drawing.Point(67, 474);
             this.lblDeckCount.Name = "lblDeckCount";
             this.lblDeckCount.Size = new System.Drawing.Size(51, 20);
             this.lblDeckCount.TabIndex = 5;
@@ -113,7 +116,7 @@
             // 
             this.lblUsedCount.AutoSize = true;
             this.lblUsedCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsedCount.Location = new System.Drawing.Point(620, 413);
+            this.lblUsedCount.Location = new System.Drawing.Point(617, 474);
             this.lblUsedCount.Name = "lblUsedCount";
             this.lblUsedCount.Size = new System.Drawing.Size(51, 20);
             this.lblUsedCount.TabIndex = 6;
@@ -178,6 +181,7 @@
             this.tsbtnRestart,
             this.tsbtnSample,
             this.tsbDraw1,
+            this.tsbSideBoard,
             this.tsbar});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -205,11 +209,6 @@
             this.tsbtnSample.Text = "Draw hand";
             this.tsbtnSample.Click += new System.EventHandler(this.tsbtnSample_Click);
             // 
-            // tsbar
-            // 
-            this.tsbar.Name = "tsbar";
-            this.tsbar.Size = new System.Drawing.Size(100, 22);
-            // 
             // tsbDraw1
             // 
             this.tsbDraw1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -220,12 +219,49 @@
             this.tsbDraw1.Text = "Draw 1 random card";
             this.tsbDraw1.Click += new System.EventHandler(this.tsbDraw1_Click);
             // 
-            // Form5
+            // tsbSideBoard
+            // 
+            this.tsbSideBoard.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbSideBoard.Image = ((System.Drawing.Image)(resources.GetObject("tsbSideBoard.Image")));
+            this.tsbSideBoard.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbSideBoard.Name = "tsbSideBoard";
+            this.tsbSideBoard.Size = new System.Drawing.Size(23, 22);
+            this.tsbSideBoard.Text = "SideBoard it!";
+            this.tsbSideBoard.Click += new System.EventHandler(this.tsbSideBoard_Click);
+            // 
+            // tsbar
+            // 
+            this.tsbar.Name = "tsbar";
+            this.tsbar.Size = new System.Drawing.Size(100, 22);
+            // 
+            // lblprompt
+            // 
+            this.lblprompt.AutoSize = true;
+            this.lblprompt.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblprompt.Location = new System.Drawing.Point(226, 34);
+            this.lblprompt.Name = "lblprompt";
+            this.lblprompt.Size = new System.Drawing.Size(233, 25);
+            this.lblprompt.TabIndex = 16;
+            this.lblprompt.Text = "You are Playing with....";
+            // 
+            // lbldeckName
+            // 
+            this.lbldeckName.AutoSize = true;
+            this.lbldeckName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbldeckName.Location = new System.Drawing.Point(362, 71);
+            this.lbldeckName.Name = "lbldeckName";
+            this.lbldeckName.Size = new System.Drawing.Size(84, 25);
+            this.lbldeckName.TabIndex = 17;
+            this.lbldeckName.Text = "??????";
+            // 
+            // LetsPlay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Teal;
-            this.ClientSize = new System.Drawing.Size(843, 447);
+            this.ClientSize = new System.Drawing.Size(843, 501);
+            this.Controls.Add(this.lbldeckName);
+            this.Controls.Add(this.lblprompt);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.cmbLeast);
             this.Controls.Add(this.cmbNext);
@@ -241,7 +277,7 @@
             this.Controls.Add(this.lstUsed);
             this.Controls.Add(this.lstDeck);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Form5";
+            this.Name = "LetsPlay";
             this.Text = "Lets Pwn";
             ((System.ComponentModel.ISupportInitialize)(this.picSpike)).EndInit();
             this.toolStrip1.ResumeLayout(false);
@@ -271,5 +307,8 @@
         private System.Windows.Forms.ToolStripButton tsbtnSample;
         private System.Windows.Forms.ToolStripProgressBar tsbar;
         private System.Windows.Forms.ToolStripButton tsbDraw1;
+        private System.Windows.Forms.Label lblprompt;
+        private System.Windows.Forms.Label lbldeckName;
+        private System.Windows.Forms.ToolStripButton tsbSideBoard;
     }
 }

@@ -12,55 +12,122 @@ using System.IO;
 
 namespace SpikeHelper
 {
-    public partial class Form5 : Form
+    public partial class LetsPlay : Form
     {
-
+        
         int currDeckCount = 0;
         int currUsedDeckCount = 0;
-        string file;
-        ArrayList Deck ;
-        ArrayList usedDeck ;
-        Dictionary<string, double> statsDictionary;
+        string file ;
+        ArrayList Deck = new ArrayList();
+        ArrayList usedDeck = new ArrayList();
+        ArrayList SideBoard = new ArrayList();
+        Dictionary<string, double> statsDictionary= new Dictionary<string, double>();
 
-        public Form5(string theFileName)
+        ArrayList orig;
+        int origCount;
+
+        public LetsPlay(string theFileName)
         {
             InitializeComponent();
             lblDeckCount.Text = "Cards Left in Deck: ";
             lblUsedCount.Text = "Cards Used from Deck: ";
+            file = theFileName;
+
+
             if (theFileName != "")
             {
                 fillup(theFileName);
+                lbldeckName.Text = theFileName.Substring(theFileName.LastIndexOf("\\") + 1).Remove(theFileName.Substring(theFileName.LastIndexOf("\\")).Length - 5); ;
+                lbldeckName.ForeColor = Color.Blue;
             }
 
             lstDeck.BackColor = Color.LightBlue;
             lstUsed.BackColor = Color.LightGray;
         }
 
+        public void Reset(ArrayList modDeck, int count)
+        {
+            //Restart a game. Use modDeck as the guide for the 60 main decked
+
+            Deck = modDeck;
+            currDeckCount = count;
+
+            
+            usedDeck = new ArrayList();
+
+            statsDictionary.Clear();
+            populateDeck();
+            populateUsed();
+            middleStats();
+        }
 
 
         private void fillup(string input)
         {
-            Deck = new ArrayList();
-            usedDeck = new ArrayList();
-            statsDictionary = new Dictionary<string, double>();
+
+            //read and pullup data structures. 
             try
             {
-                file = input;
                 string[] lines = System.IO.File.ReadAllLines(input);
+                ArrayList deckLines = new ArrayList();
+                ArrayList sbLines = new ArrayList();
 
-                foreach (string line in lines)
+                int counter = 0;
+
+
+                if (Array.IndexOf(lines, "##########SIDEBOARD##########") != -1)
                 {
-                    string actualCard = line.Substring(0, line.IndexOf("(") - 1);
-                    string actualCount = line.Substring(line.IndexOf(")") + 1);
-                    Card theCard = new Card(actualCard, int.Parse(actualCount));
+                    while (counter != Array.IndexOf(lines, "##########SIDEBOARD##########"))
+                    {
+                        deckLines.Add(lines[counter]);
+                        counter++;
+                    }
+
+                    counter++;
+
+                    while (counter < lines.Length)
+                    {
+                        sbLines.Add(lines[counter]);
+                        counter++;
+                    }
+
+                }
+                else
+                {
+                    while (counter != lines.Length)
+                    {
+                        deckLines.Add(lines[counter]);
+                        counter++;
+                    }
+                }
+
+
+                string actualCard;
+                string actualCount;
+                Card theCard;
+
+                foreach (string line in deckLines)
+                {
+                    actualCard = line.Substring(0, line.IndexOf("(") - 1);
+                    actualCount = line.Substring(line.IndexOf(")") + 1);
+                    theCard = new Card(actualCard, int.Parse(actualCount));
                     Deck.Add(theCard);
+                    currDeckCount += int.Parse(actualCount);
+                }
+
+
+                foreach (string line in sbLines)
+                {
+                    actualCard = line.Substring(0, line.IndexOf("("));
+                    actualCount = line.Substring(line.IndexOf(")") + 1);
+                    theCard = new Card(actualCard, int.Parse(actualCount));
+                    SideBoard.Add(theCard);
 
                 }
 
-                
                 populateDeck();
-                populateUsed();
-                middleStats();
+                orig = Deck;
+                origCount = currDeckCount;
             }
             catch (FileNotFoundException)
             {
@@ -72,6 +139,7 @@ namespace SpikeHelper
         private void middleStats()
         {
            
+         //Statistics of Sigle Specific to a boarder whole deck 
          double high=0.0;
          double low=999.999;
 
@@ -112,13 +180,18 @@ namespace SpikeHelper
          
         }
 
+
+        //listBox fill with the use if a string builder for USED
+
         private void populateDeck()
         {
-           
+           //fill cards in deck currently vs in play list 
             int deckSize = 0;
-            foreach (Card x in Deck)
+
+
+            foreach (Card y in Deck)
             {
-                deckSize += x.getTheCardCount();
+                deckSize += y.getTheCardCount();
             }
 
             ArrayList lines = new ArrayList();
@@ -128,6 +201,7 @@ namespace SpikeHelper
            
             foreach (Card x in Deck)
             {
+               
                 double stat = ((double)x.getTheCardCount() / (double)deckSize);
 
                 line = x.getTheCardName() + " (x)" + x.getTheCardCount() + " - " + Math.Round(stat, 4) * 100 + "%";
@@ -143,10 +217,13 @@ namespace SpikeHelper
           
         }
 
+
+        //listBox fill with the use if a string builder for USED 
+
         private void populateUsed()
         {
 
-           
+           //fill cards being used list
             int usedDeckSize = 0;
             foreach (Card x in usedDeck)
             {
@@ -157,7 +234,7 @@ namespace SpikeHelper
 
             string line = "";
 
-           
+           //calculate the individual stats 
             foreach (Card x in usedDeck)
             {
                 double stat = ((double)x.getTheCardCount() / (double)usedDeckSize);
@@ -174,8 +251,13 @@ namespace SpikeHelper
          
         }
 
+
+        //Event for moving cards from deck to used '
+
         private void lstDeck_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+
+            //use location to find card and use it
             try
             {
                 int index = this.lstDeck.IndexFromPoint(e.Location);
@@ -200,6 +282,8 @@ namespace SpikeHelper
 
             }
 
+
+            //reset the UI and refresh the DS
             statsDictionary.Clear();
             populateDeck();
             populateUsed();
@@ -263,7 +347,6 @@ namespace SpikeHelper
                     }
                 }
 
-                
 
             }
             catch (IndexOutOfRangeException)
@@ -271,6 +354,8 @@ namespace SpikeHelper
 
             }
 
+
+            //reset the UI and refresh the DS
             statsDictionary.Clear();
             populateDeck();
             populateUsed();
@@ -322,7 +407,13 @@ namespace SpikeHelper
         private void restart()
         {
             statsDictionary.Clear();
+            Deck = new ArrayList();
+            usedDeck = new ArrayList();
+            SideBoard = new ArrayList();
             fillup(file);
+            populateUsed();
+           
+
             tsbar.Minimum = 0;
             tsbar.Maximum = 200;
 
@@ -340,7 +431,7 @@ namespace SpikeHelper
 
         private void tsbtnSample_Click(object sender, EventArgs e)
         {
-            restart();
+           // restart();
 
             ArrayList allCards = new ArrayList();
 
@@ -360,6 +451,8 @@ namespace SpikeHelper
 
             lblOutLasttAction.Text = "Drew a Hand of 7";
 
+
+            //reset the UI and refresh the DS
             statsDictionary.Clear();
             populateDeck();
             populateUsed();
@@ -393,6 +486,7 @@ namespace SpikeHelper
             Random rnd = new Random();
 
             ArrayList allCards = new ArrayList();
+           
 
             foreach (Card x in Deck)
             {
@@ -403,13 +497,26 @@ namespace SpikeHelper
 
             }
 
-            useCard(allCards[rnd.Next(0, currDeckCount-1)].ToString());
+            string it = allCards[rnd.Next(0, currDeckCount-1)].ToString();
 
+            useCard(it);
+
+
+            //reset the UI and refresh the DS
             statsDictionary.Clear();
             populateDeck();
             populateUsed();
             middleStats();
+            lblOutLasttAction.Text = "Drew a " +  it + " from Deck";
         }
+
+        private void tsbSideBoard_Click(object sender, EventArgs e)
+        {
+            Sideboarder sb = new Sideboarder(Deck, SideBoard,this);
+            sb.Show();
+        }
+
+      
        
 
     }

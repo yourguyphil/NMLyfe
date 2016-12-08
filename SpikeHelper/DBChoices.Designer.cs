@@ -1,6 +1,6 @@
 ﻿namespace SpikeHelper
 {
-    partial class Form3
+    partial class DBChoices
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form3));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DBChoices));
             this.btnNew = new System.Windows.Forms.Button();
             this.btnLoad = new System.Windows.Forms.Button();
             this.ofdSaves = new System.Windows.Forms.OpenFileDialog();
@@ -36,7 +36,7 @@
             // 
             // btnNew
             // 
-            this.btnNew.Location = new System.Drawing.Point(31, 62);
+            this.btnNew.Location = new System.Drawing.Point(30, 21);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(120, 64);
             this.btnNew.TabIndex = 0;
@@ -46,7 +46,7 @@
             // 
             // btnLoad
             // 
-            this.btnLoad.Location = new System.Drawing.Point(218, 62);
+            this.btnLoad.Location = new System.Drawing.Point(225, 21);
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(120, 64);
             this.btnLoad.TabIndex = 1;
@@ -58,16 +58,16 @@
             // 
             this.ofdSaves.FileName = "openFileDialog1";
             // 
-            // Form3
+            // DBChoices
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Teal;
-            this.ClientSize = new System.Drawing.Size(387, 198);
+            this.ClientSize = new System.Drawing.Size(387, 107);
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.btnNew);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Form3";
+            this.Name = "DBChoices";
             this.Text = "What to do?";
             this.ResumeLayout(false);
 

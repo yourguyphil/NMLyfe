@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections;
 
 namespace SpikeHelper
 {
@@ -11,6 +12,8 @@ namespace SpikeHelper
 
         string theCardName;
         int cardCount = 0;
+        string special="";
+        ArrayList subSpecial =new ArrayList();
 
         public Card(string cardName, int count)
         {
@@ -18,6 +21,28 @@ namespace SpikeHelper
             cardCount = count;
             
         }
+    
+
+        public void setSpecial(string super)
+        {
+            special = super;
+        }
+
+        public void addSubSpecial(string super)
+        {
+            subSpecial.Add(super);
+        }
+
+        public string getSpecial()
+        {
+            return special;
+        }
+
+        public ArrayList getSubSpecial()
+        {
+            return subSpecial;
+        }
+
 
         public string getTheCardName()
         {

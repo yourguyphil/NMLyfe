@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*This class is the middle man that initalies either creating a new deck or editing an old existing deck 
+ * 
+ * 
+ * 
+*/
+using System;
 using System.Collections.Generic;
 using System.Collections;
 using System.ComponentModel;
@@ -12,16 +17,18 @@ using System.IO;
 
 namespace SpikeHelper
 {
-    public partial class Form3 : Form
+    public partial class DBChoices : Form
     {
-        public Form3()
+        public DBChoices()
         {
             InitializeComponent();
         }
 
         private void btnNew_Click(object sender, EventArgs e)
         {
-            Form2 two = new Form2("");
+            //Initialize Building a new Deck Form
+
+            DeckBuilder two = new DeckBuilder("");
             two.Show();
             Hide();
             
@@ -30,10 +37,12 @@ namespace SpikeHelper
         private void btnLoad_Click(object sender, EventArgs e)
         {
 
+            //Initialize Editing an already existed Deck
+
             ofdSaves.Filter = "Text File|*.txt";
             ofdSaves.Title = "Load Deck!";
             ofdSaves.ShowDialog();
-            Form2 two = new Form2(ofdSaves.FileName);
+            DeckBuilder two = new DeckBuilder(ofdSaves.FileName);
             two.Show();
             Hide();
         }
