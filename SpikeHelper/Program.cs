@@ -14,6 +14,7 @@ namespace SpikeHelper
         [STAThread]
         static void Main()
         {
+            // Hello Peter
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Initial());
