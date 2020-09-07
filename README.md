@@ -10,8 +10,11 @@ Build a deck, generate hand + move cards to diffrent zones. Help your muligan de
 
 ## Here's a Demo! 
 ![](https://github.com/yourguyphil/Spike-Helper/tree/master/Demo%20Images/Inital Page.PNG)
+
 ![](https://github.com/yourguyphil/Spike-Helper/tree/master/Demo%20Images/Deck Builder.PNG)
+
 ![](https://github.com/yourguyphil/Spike-Helper/tree/master/Demo%20Images/Load a deck.PNG)
+
 ![](https://github.com/yourguyphil/Spike-Helper/tree/master/Demo%20Images/In app.PNG)
 
 ## Technology used
