@@ -9,13 +9,13 @@ Calculate in game stats/probability of game of Magic based on known information.
 Build a deck, generate hand + move cards to diffrent zones. Help your muligan decisions and importaint decisions based on the probabilities. 
 
 ## Here's a Demo! 
-![](https://github.com/yourguyphil/Spike-Helper/tree/master/Demo%20Images/Inital Page.PNG)
+![](https://github.com/yourguyphil/Spike-Helper/tree/master/Demo%20Images/Inital%Page.PNG)
 
-![](https://github.com/yourguyphil/Spike-Helper/tree/master/Demo%20Images/Deck Builder.PNG)
+![](https://github.com/yourguyphil/Spike-Helper/tree/master/Demo%20Images/Deck%Builder.PNG)
 
-![](https://github.com/yourguyphil/Spike-Helper/tree/master/Demo%20Images/Load a deck.PNG)
+![](https://github.com/yourguyphil/Spike-Helper/tree/master/Demo%20Images/Load%a%deck.PNG)
 
-![](https://github.com/yourguyphil/Spike-Helper/tree/master/Demo%20Images/In app.PNG)
+![](https://github.com/yourguyphil/Spike-Helper/tree/master/Demo%20Images/In%app.PNG)
 
 ## Technology used
 
