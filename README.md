@@ -4,7 +4,7 @@
 
 Calculate in game stats/probability of game of Magic based on known information. For use to competative magic players who would like to know the exact numbers!
 
-## Backgorund
+## Background
 
 Build a deck, generate hand + move cards to diffrent zones. Help your muligan decisions and importaint decisions based on the probabilities. 
 
